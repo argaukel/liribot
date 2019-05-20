@@ -1,10 +1,12 @@
 var concert = require("./concert")
-require("dotenv").config();
+var keys = require("./keys.js");
 // var axios = require("axios");
+var Spotify = require('node-spotify-api');
 // var moment = require("moment");
+require("dotenv").config();
 
-// var keys = require("./keys.js");
-// var spotify = new Spotify(keys.spotify);
+var spotify = new Spotify(keys.spotify);
+
 
 
 var search = process.argv[2];
@@ -16,18 +18,14 @@ if (search === "concert") {
 }
 
 
-// function findConcert(band) {
-//   // var divider = "\n------------------------------------------------------------\n\n";
-//   var URL = "https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp";
-//   axios.get(URL).then(
-//     function(response) {
-//       var jsonData = response.data
-//         console.log(jsonData);
-//         for (var i = 0; i < jsonData.length; i++) {
-//           console.log(jsonData[i].venue.name);
-//           console.log(jsonData[i].venue.city + ", " + jsonData[i].venue.region + ", " + jsonData[i].venue.country);
-//           var jsonDate = jsonData[i].datetime
-//           console.log(moment(jsonDate).format('MM-DD-YYYY'));
-//         }
-//     }
-//   )}
+if (search === "spotify") {
+  
+  
+spotify.search({ type: 'track', query: term }, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  }
+jsonData = JSON.parse(data) 
+console.log(jsonData); 
+});
+}
