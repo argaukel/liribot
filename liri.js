@@ -25,7 +25,7 @@ spotify.search({ type: 'track', query: term }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
-jsonData = JSON.parse(data) 
-console.log(jsonData); 
+// jsonData = JSON.parse(data) 
+console.log(data.tracks); 
 });
 }
